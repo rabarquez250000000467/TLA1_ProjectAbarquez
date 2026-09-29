@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enterprise Income Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="app-header">
+        <h1 class="app-title">Enterprise Income Ledger</h1>
+        <p class="app-subtitle">Financial Stream Tracking & Management Console</p>
+      </header>
+
+      <!-- Dashboard Statistics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Total Categories</span>
+          <span id="stat-total" class="stat-value">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Active Categories</span>
+          <span id="stat-active" class="stat-value" style="color: #10b981;">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Est. Active Revenue</span>
+          <span id="stat-revenue" class="stat-value" style="color: #6366f1;">$0</span>
+        </div>
+      </div>
+
+      <!-- Registration / Edit Form -->
+      <div class="card">
+        <div class="card-header">
+          <h2 id="form-title">➕ Register New Income Category</h2>
+          <button id="cancel-edit-btn" class="btn-cancel hidden">Cancel Editing</button>
+        </div>
+        <div class="card-body">
+          <form id="category-form">
+            <input type="hidden" id="edit-id" value="" />
+            <div class="form-row">
+              <div class="form-group flex-2">
+                <label class="form-label">Category Name</label>
+                <input type="text" id="category-name" class="form-control" placeholder="e.g., Consulting, Licensing" required />
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Est. Monthly Revenue ($)</label>
+                <input type="number" id="category-amount" step="0.01" class="form-control" placeholder="e.g., 5000" />
+              </div>
+
+              <div class="form-group flex-1">
+                <label class="form-label">Status</label>
+                <select id="category-status" class="form-control">
+                  <option value="Active">Active</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Archived">Archived</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Description</label>
+              <input type="text" id="category-desc" class="form-control" placeholder="e.g., Enterprise SLA agreement contract for Q3" required />
+            </div>
+
+            <button type="submit" id="submit-btn" class="btn-primary">Save Category</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Table View -->
+      <div class="card">
+        <div class="card-header">
+          <h2>Registered Categories</h2>
+          <div class="action-button-group">
+            <button id="export-btn" class="btn-secondary">📥 Export Data</button>
+            <button id="clear-btn" class="btn-clear">Clear All</button>
+          </div>
+        </div>
+
+        <!-- Search & Filters -->
+        <div class="search-bar-container">
+          <div class="search-input-wrapper">
+            <input type="text" id="search-input" class="form-control" placeholder="🔍 Search categories by name or description..." />
+          </div>
+          <div class="status-filter-wrapper">
+            <select id="status-filter" class="form-control">
+              <option value="All">All Statuses</option>
+              <option value="Active">Active</option>
+              <option value="Pending">Pending</option>
+              <option value="Archived">Archived</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th style="width: 25%;">Category Name</th>
+                <th style="width: 35%;">Description</th>
+                <th style="width: 15%;">Est. Amount</th>
+                <th style="width: 10%;">Status</th>
+                <th style="width: 15%; text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="category-table-body">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
